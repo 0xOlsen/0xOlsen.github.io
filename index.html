@@ -1,74 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Dan-Remi Olsen – dataingeniørstudent med interesse for backend, infrastruktur og nettverk.">
     <title>Dan-Remi Olsen</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <div class="header-content">
-            <div class="avatar">&gt;_</div>
-            <div class="header-text">
-                <h1>Dan-Remi Olsen</h1>
-                <div class="tagline">Dataingeniørstudent // <span>?</span></div>
-            </div>
-        </div>
-        <nav>
-            <a href="index.html" class="nav-active">home</a>
-            <a href="projects.html">projects</a>
-            <a href="about.html">about</a>
-        </nav>
-    </header>
+<header>
+    <h1>Dan-Remi Olsen</h1>
+    <p class="lead">Dataingeniørstudent. Backend, infrastruktur og nettverk.</p>
+    <nav>
+        <a href="#prosjekter">Prosjekter</a>
+        <a href="#om">Om meg</a>
+        <a href="#kontakt">Kontakt</a>
+    </nav>
+</header>
 
-    <div class="hero">
-        <h2>Velkommen til <span class="accent">Dan-Remi</span> sin side.</h2>
-        <p>Nysgjerrig i møte med fremtidens teknologi</p>
-        <div class="cta-links">
-            <a href="projects.html">view projects</a>
-            <a href="about.html">more about me</a>
-        </div>
-    </div>
-
-    <section>
-        <div class="terminal">
-            <div class="output">
-                <span>location:</span> Norge<br>
-                <span>focus:</span> backend systemer, infrastruktur, nettverk<br>
-                <span>editor:</span> neovim<br>
-                <span>status:</span> Feilsøker en server<span class="cursor"></span>
-            </div>
-        </div>
+<main>
+    <section id="prosjekter">
+        <h2>Prosjekter</h2>
+        <ul class="list">
+            <li>
+                <h3>Kommer snart</h3>
+                <p>Sannsynligvis et CLI-verktøy. Mer informasjon når det er klart.</p>
+                <p class="meta">Bash · Git</p>
+            </li>
+        </ul>
     </section>
 
-    <section>
-        <div class="section-title">featured projects</div>
-        <div class="projects-grid">
-            <div class="project-card">
-                <h3>Kommer</h3>
-                <p>Sannsynligvis CLI</p>
-                <div class="project-tech">
-                    <span class="tag">Bash</span>
-                    <span class="tag">Git</span>
-                </div>
-            </div>
-            <div class="project-card">
-                <h3>Snart</h3>
-                <p>Real-time overvåkning?</p>
-                <div class="project-tech">
-                    <span class="tag"></span>
-                </div>
-            </div>
-        </div>
+    <section id="om">
+        <h2>Om meg</h2>
+        <p>Kommer mer her etter hvert.</p>
+        <dl class="skills">
+            <dt>Språk</dt>
+            <dd>Python, C, Java, C#</dd>
+            <dt>Backend og infrastruktur</dt>
+            <dd>Linux, Docker, PostgreSQL, CI/CD</dd>
+            <dt>Verktøy</dt>
+            <dd>Git, Bash, Neovim, GitHub Actions</dd>
+        </dl>
     </section>
 
-    <footer>
-        Utviklet med kaffe (og KI)
-    </footer>
-</div>
+    <section id="kontakt">
+        <h2>Kontakt</h2>
+        <p>
+            <a href="mailto:dan.remi.olsen@gmail.com">dan.remi.olsen@gmail.com</a><br>
+            <a href="https://www.linkedin.com/in/dan-remi-olsen-540b53263">LinkedIn</a>
+        </p>
+    </section>
+</main>
+
+<footer>
+    <small>© 2026 Dan-Remi Olsen</small>
+</footer>
 
 </body>
 </html>
