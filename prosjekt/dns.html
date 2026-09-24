@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
+    <meta name="description" content="Oppsett av egen DNS på nettverket">
+    <title>DNS</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header>
+    <h1>DNS</h1>
+    <hr>
+    <p class="lead">DNS ble satt opp</p>
+</header>
+
+<main class="artikkel">
+    <section id="bakgrunn">
+        <h2>Bakgrunn</h2>
+        <p>
+            Jeg hadde i lengre tid sett behovet for å kunne ha en annonseblokkerer, som også blokkerte "farlige" nettsider.
+            Planen var derfor enkel: Installer Pi-hole på en enhet og gjør DNS-oppslag opp mot denne.
+        </p>
+    </section>
+
+    <section id="forste-versjon">
+        <h2>Første versjon</h2>
+        <p>
+            Jeg brukte en Raspberry Pi 4B jeg hadde liggende og oppsettet av denne gikk rimelig kjapt. Installer Raspberry Pi OS, start Pi-hole ved oppstart og sett statisk IP fra ruteren. Det gikk raskt og krevde i utgangspunktet lite kunnskap. Men hva med å:
+        </p>
+        <ul>
+            <li>Kjøre det i en container?</li>
+            <li>Oppdatere blokkeringslisten automatisk?</li>
+            <li>Oppdatere Pi-en automatisk?</li>
+            <li>Sende feilmelding til meg?</li>
+        </ul>
+    </section>
+
+    <section id="ny-maskinvare">
+        <h2>Ny maskinvare</h2>
+        <p>
+            Samtidig hadde jeg en Raspberry Pi Zero 2 W som ikke lenger fungerte til sitt formål, da den rett og slett ikke var kraftig nok. Men DNS? Det kunne fungere.
+        </p>
+        <p>
+            Det var selvfølgelig et problem og det var minne. Den utgaven av Pi 4B jeg brukte nå hadde 4 GB med minne. Zero 2 W har 512 MB. Det var også et annet problem som jeg så på som kritisk og det var slitasje på SD-kortet, kom ikke en slik til å kunne "spise opp" SD-kort?
+        </p>
+    </section>
+
+    <section id="os">
+        <h2>Valg av OS</h2>
+        <p>
+            Valget av OS falt på Alpine Linux, et lettvekts system, hvor jeg kun fikk det jeg ville ha. For å hindre slitasje støtter Alpine "diskless" installasjon, som betyr at ved hver oppstart lastes hele systemet inn i minnet. Det krever litt mer minne, men reduserer bruken av SD-kortet betraktelig. Men er dette mulig innenfor 512 MB?
+        </p>
+    </section>
+
+    <section id="oppsett">
+        <h2>Oppsett</h2>
+        <p>
+            Oppsettet ble startet og selve installasjonen av Alpine gikk fint. De nødvendige pakkene ble installert og lagret med <code>lbu commit</code>. For å unngå DNS over wifi, ble det gått til innkjøp av en micro-USB-til-RJ45-adapter som ga litt lavere svartid. DNS ble satt opp med Docker og det var kun det å få rutet trafikken korrekt som ga noe utfordring.
+        </p>
+        <p>
+            For ikke å være avhengig av én ekstern DNS-leverandør ble Unbound brukt for å kunne sende DNS-forespørsler direkte til rotnavnetjenerne. Brannmur i ruter ble konfigurert slik at alle nettverkets DNS-forespørsler ble endret til å sendes til egen DNS, på den måten fungerte blokkeringen i Pi-hole for alle enheter, med unntak av de som gjør DNS over HTTPS. For å spare litt på minnebruken ble etter hvert databasen til Pi-hole lagret direkte på SD-kortet. Det gjorde både at noe minne ble spart og kuttet ned mye av oppstartstiden. Nå behøvde ikke lenger Pi-hole å laste ned alle listene hver gang. Siden Pi-hole bare skriver til databasen når blokkeringslistene oppdateres, ble det lite skriving til SD-kortet.
+        </p>
+    </section>
+
+    <section id="overvaking">
+        <h2>Overvåking</h2>
+        <p>
+            Det er satt opp en egen server med ntfy som de andre enhetene kan rapportere tilbake til. Ved avvik sendes det en melding med ntfy om situasjonen.
+        </p>
+    </section>
+
+    <section id="erfaringer">
+        <h2>Erfaringer</h2>
+        <p>
+            Det overraskende med dette prosjektet var den lave minnebruken. Jeg hadde forventet at det kom til å bli trangt, men resultatet ble at selv ved lang oppetid så holdt minnebruken seg på rundt 230 MB.
+            Ett problem dukket dog opp og det var at enheten var den eneste som kunne tilby DNS på nettverket. Det var ingen redundans hvis Pi-en gikk ned og da blir nettet uten DNS. Dette er kanskje prosjektets svakeste side og noe jeg ser ble problematisk. I løpet av de 10 månedene systemet fungerte, var det bare én gang det faktisk skjedde.
+        </p>
+    </section>
+
+    <section id="videre">
+        <h2>Veien videre</h2>
+        <p>
+            Etter en stund ble problemet nevnt over tatt tak i og et nytt oppsett ble iverksatt. Jeg fikk tak i flere modifiserte Raspberry Pi 3 med eMMC-minne loddet fast. Disse har 1 GB RAM, som gir mer rom for fremtiden, og innebygd RJ45.
+            En plan om å sette opp to slike som DNS ble satt og resultatet kan leses om i <a href="dnsv2.html">DNS versjon 2</a>.
+        </p>
+    </section>
+
+</main>
+
+<nav>
+    <a href="../">Tilbake</a>
+</nav>
+
+<footer>
+    <small id="footnote"></small>
+</footer>
+
+<script src="../index.js"></script>
+</body>
+</html>
