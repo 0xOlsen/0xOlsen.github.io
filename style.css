@@ -36,7 +36,7 @@ h1, h2, h3 {
 }
 
 h1 { font-size: 2rem; text-align: center; }
-h2 { font-size: 1.1rem; margin-bottom: 1rem; }
+h2 { font-size: 1.3rem; margin-bottom: 1rem; }
 h3 { font-size: 1rem; }
 
 p { margin: 0 0 0.75rem; }
@@ -73,6 +73,8 @@ section {
 }
 
 /* Prosjektsider */
+main + nav { padding: 1rem 0 2rem; }
+
 .artikkel section {
     border-top: none;
     padding: 0;
@@ -94,7 +96,7 @@ section {
 /* Project list */
 .list {
     list-style: none;
-    margin: 0;
+    margin: 1.5rem 0 0;
     padding: 0;
 }
 
@@ -102,12 +104,9 @@ section {
     margin-top: 1.5rem;
 }
 
-.list p { margin: 0.25rem 0 0; }
+.list h3 { font-size: 1.1rem; }
 
-.meta {
-    color: var(--muted);
-    font-size: 0.9rem;
-}
+.list p { margin: 0.25rem 0 0; }
 
 /* Skills */
 .skills {
